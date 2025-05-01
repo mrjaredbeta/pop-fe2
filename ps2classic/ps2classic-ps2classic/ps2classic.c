@@ -263,7 +263,7 @@ void ps2_encrypt_image(char mode[], char image_name[], char data_file[], char re
 		{
 			aes128cbc_enc(ps2_data_key, iv, data_buffer+(i*segment_size), segment_size, data_buffer+(i*segment_size));
 			sha1(data_buffer+(i*segment_size), segment_size, meta_buffer+(i*PS2_META_ENTRY_SIZE));
-			wbe32(meta_buffer+(i*PS2_META_ENTRY_SIZE)+0x14, segment_number);
+			wbe32(meta_buffer+(i*PS2_META_ENTRY_SIZE)+0x14, 0x1000000 | segment_number);
 			segment_number++;
 		}
 
